@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:500,600,800">
+  
+  <title>Frontend Mentor | Notifications page</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; margin-top: 1rem;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      /*Primary*/
+      --red: hsl(1, 90%, 64%);
+      --blue: hsl(219, 85%, 26%);
+      /*Neutral*/
+      --white: hsl(0, 0%, 100%);
+      --very-light-grayish-blue: hsl(210, 60%, 98%);
+      --light-grayish-blue-1: hsl(211, 68%, 94%);
+      --light-grayish-blue-2: hsl(205, 33%, 90%);
+      --grayish-blue: hsl(219, 14%, 63%);
+      --dark-grayish-blue: hsl(219, 12%, 42%);
+      --very-dark-blue: hsl(224, 21%, 14%);
+    }
+    html {
+      font-size: 16px;
+      font-family: 'Plus Jakarta Sans';
+    }
+    body {
+      min-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: var(--very-light-grayish-blue);
+    }
+    .notifications {
+      border-radius: 0.5rem;
+      background-color: white;
+      min-width: 400px;
+      width: 40%;
+      font-size: 1rem;
+      padding: 0.5rem 1.5rem;
+    }
+    .header {
+      font-size: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+    }
+    .header .notifications__count {
+      background-color: var(--blue);
+      border-radius: 0.25rem;
+      padding: 0.15rem 0.6rem;
+      font-size: 0.75em;
+      color: white;
+      margin-left: 0.5rem;
+    }
+    .header .unread__toggle {
+      font-size: 1.4em;
+      color: var(--grayish-blue);
+      cursor: pointer;
+    }
+    .header .unread__toggle:hover {
+      color: var(--blue);
+    }
+    .notifications__container {
+      margin: 1rem 0;
+    }
+    .notification__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .notification__item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .user__avatar {
+      height: 2rem;
+    }
+    .user__notification {
+      margin-left: 1rem;
+    }
+    .user__notification p {
+      margin: 0;
+    }
+    .user__notification p:first-child {
+      display: inline;
+      vertical-align: middle;
+    }
+    .user__notification p > span {
+      margin-right: 4px;
+    }
+    .user__notification .user__profile {
+      font-weight: 800;
+    }
+    .user__notification .user__action {
+      color: var(--grayish-blue);
+    }
+    .user__notification .user__notification__on {
+      color: var(--blue);
+      font-weight: 800;
+    }
+    .unread {
+      background-color: var(--light-grayish-blue-1);
+    }
+    .unread__dot {
+      color: var(--red);
+      font-size: 0.4rem;
+    }
+    .d-none {
+      display: none !important;
+    }
+    .d-block {
+      display: inline-block;
+    }
+    .am__time__ago {
+      color: var(--grayish-blue);
+    }
+    @media only screen and (max-width: 500px) {
+      body {
+        justify-content: flex-start;
+        margin: 0;
+      }
+      .notifications {
+        width: 100vw;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="notifications">
+    <div class="header">
+      <h1>Notifications<span class="notifications__count">3</span></h1>
+      <p class="unread__toggle">Mark all as read</p>
+    </div>
+    <div class="notifications__container">
+      <ul class="notification__list">
+        <li class="notification__item unread">
+          <img src="./assets/images/avatar-mark-webber.webp" class="user__avatar">
+          <div class="user__notification">
+            <p>
+              <span class="user__profile">Mark Webber</span>
+              <span class="user__action">reacted to your recent post</span>
+              <span class="user__notification__on">My first tournament today!</span>
+              <span class="unread__dot d-block"><i class="fa-solid fa-circle"></i></span>
+            </p>
+            <p class="am__time__ago">1m ago</p>
+            <p class="user__message d-none">
+              Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.
+            </p>            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+<!--   Mark Webber reacted to your recent post My first tournament today!
+  1m ago
+
+  Angela Gray followed you
+  5m ago
+
+  Jacob Thompson has joined your group Chess Club
+  1 day ago
+
+  Rizky Hasanuddin sent you a private message
+  5 days ago
+  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+  I'm already having lots of fun and improving my game.
+
+  Kimberly Smith commented on your picture
+  1 week ago
+
+  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
+  2 weeks ago
+
+  Anna Kim left the group Chess Club
+  2 weeks ago -->
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.
+  </footer>
+  <script src="https://kit.fontawesome.com/862bd05429.js" crossorigin="anonymous"></script>
+</body>
+</html>
