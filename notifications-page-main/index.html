@@ -176,7 +176,7 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.
   </footer>
-  <script type="text/javascript">
+  <script>
     const NotificationType = {
       Reaction: 0,
       Follow: 1,
@@ -271,7 +271,7 @@
       data.forEach(el => {
         let htmlElement = `
           <li class="notification__item ${el.status ? '' : 'unread'}">
-            <img src="./assets/images/avatar-${el.userAvatar}.webp" class="user__avatar">
+            <img src="./assets/images/avatar-${el.userAvatar}.webp" alt="${el.userAvatar}" class="user__avatar">
             <div class="user__notification">
               <p>
                 <span class="user__profile">${el.userProfile}</span>
