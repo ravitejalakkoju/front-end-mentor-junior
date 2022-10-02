@@ -78,6 +78,7 @@
         padding: 0.75rem 3rem;
         border: 2px solid white;
         transition: 0.3s all ease;
+        position: absolute;
       }
       .container div:hover .preview {
         display: block;
@@ -89,6 +90,8 @@
       }
       .grid__item {
         position: relative;
+        background-position: center;
+        background-size: contain;      
       }
       .github {
         position: absolute;
@@ -101,14 +104,16 @@
       .a { 
         grid-area: a; 
         background-image: url('./notifications-page-main/design/desktop-design.jpg');
-        background-size: contain;      
       }
       .a:hover{
         background-image: linear-gradient(to top, hsla(255, 100%, 40%, 0.9), hsla(211, 100%, 95%, 0.9)), url('./notifications-page-main/design/desktop-design.jpg');
       }
       .b { 
         grid-area: b; 
-        background-color: #FDD94F;
+        background-image: url('./expenses-chart-component-main/design/desktop-design.jpg');
+      }
+      .b:hover{
+        background-image: linear-gradient(to top, hsl(10, 79%, 35%, 0.9), hsla(211, 100%, 95%, 0.9)), url('./expenses-chart-component-main/design/desktop-design.jpg');
       }
       .c { 
         grid-area: c;
@@ -170,7 +175,10 @@
         <a href="./notifications-page-main/index.html" class="preview">Preview</a>
         <a href="https://github.com/ravitejalakkoju/front-end-mentor-junior/tree/main/notifications-page-main" class="github"><i class="fa-brands fa-github"></i></a>
       </div>
-      <div class="b">👌</div>
+      <div class="b grid__item" href="./expenses-chart-component-main/index.html">
+        <a href="./expenses-chart-component-main/index.html" class="preview">Preview</a>
+        <a href="https://github.com/ravitejalakkoju/front-end-mentor-junior/tree/main/expenses-chart-component-main" class="github"><i class="fa-brands fa-github"></i></a>
+      </div>
       <div class="c">🧠</div>
       <div class="d">🎩</div>
       <div class="e">🦊</div>

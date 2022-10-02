@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:400,700">
+
+  <title>Frontend Mentor | Expenses chart component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      --soft-red: hsl(10, 79%, 65%);
+      --cyan: hsl(186, 34%, 60%);
+      --dark-brown: hsl(25, 47%, 15%);
+      --medium-brown: hsl(28, 10%, 53%);
+      --cream: hsl(27, 66%, 92%);
+      --very-pale-orange: hsl(33, 100%, 98%);
+    }
+    html {
+      font-size: 18px;
+      font-family: 'DM Sans';
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 90vh;
+      background-color: var(--cream);
+    }
+    .expenses__chart {
+      min-width: 300px;
+      width: 25%;
+    }
+    .balance__card, .expense__card {
+      border-radius: 0.5rem;
+      display: flex;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .balance__card {
+      background-color: var(--soft-red);
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+    .balance p {
+      margin: 0;
+    }
+    .balance .title {
+      font-size: 0.6rem;
+    }
+    .balance .balance__amount {
+      font-weight: 400;
+      margin-top: 0.25rem;
+    }
+    .balance__card img {
+      height: 2rem;
+    }
+    .expense__card {
+      align-items: flex-start;
+      flex-direction: column;
+      background-color: var(--very-pale-orange);
+    }
+    .expense__card .title {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+    .expense__card .expense__analytics {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      padding-top: 1rem;
+      border-top: 2px solid var(--cream);
+    }
+    .expense__analytics p {
+      margin: 0;
+    }
+    .expense__analytics > .total > .title {
+      font-size: 0.65rem;
+      color: var(--medium-brown);
+    }
+    .expense__analytics > .total > .amount {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+    }
+    .expense__analytics > .analytics > .percentage {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      text-align: right;
+    }
+    .expense__analytics > .analytics > .percentage__on {
+      font-size: 0.75rem;
+      color: var(--medium-brown);
+    }
+    .chart {
+      display: table;
+      table-layout: fixed;
+      box-sizing: border-box;
+      border-spacing: 10px;
+      width: 100%;
+      min-height: 150px;
+      padding-left: 0;
+    }
+    .chart li {
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom;
+      height: 150px;
+    }
+    .chart span {
+      display: block;
+      background: var(--soft-red);
+      animation: draw 1s ease-in-out;
+      border-radius: 0.25rem;
+    }
+    .chart span:before {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      display: block;
+      margin: 0;
+      text-align: center;
+      content: attr(title);
+      font-size: 0.6rem;
+      margin-top: 0.25rem;
+    }
+    @keyframes draw {
+      0% {
+        height: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="expenses__chart">
+    <div class="balance__card">
+      <div class="balance">
+        <p class="title">My balance</p>
+        <p class="balance__amount">$921.48</p>
+      </div>
+      <img src="./images/logo.svg" alt="logo">
+    </div>    
+    <div class="expense__card">
+      <h1 class="title">Spending - Last 7 days</h1>
+      <ul class="chart">
+        <li><span style="height:15%" title="mon"></span></li>
+        <li><span style="height:52%" title="tue"></span></li>
+        <li><span style="height:53%" title="wed"></span></li>
+        <li><span style="height:52%" title="thu"></span></li>
+        <li><span style="height:45%" title="fri"></span></li>
+        <li><span style="height:75%" title="sat"></span></li>
+        <li><span style="height:85%" title="sun"></span></li>
+      </ul>
+      <div class="expense__analytics">
+        <div class="total">
+          <p class="title">Total this month</p>
+          <p class="amount">$478.33</p>
+        </div>
+        <div class="analytics">
+          <p class="percentage">+2.4%</p>
+          <p class="percentage__on">from last month</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+  <script type="module">
+    import data from './data.json' assert { type: "json" };
+    console.log(data);
+  </script>
+</body>
+</html>
