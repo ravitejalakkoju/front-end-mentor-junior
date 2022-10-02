@@ -108,22 +108,49 @@
       box-sizing: border-box;
       border-spacing: 10px;
       width: 100%;
-      min-height: 150px;
+      min-height: 200px;
       padding-left: 0;
     }
     .chart li {
       position: relative;
       display: table-cell;
       vertical-align: bottom;
-      height: 150px;
+      height: 200px;
     }
     .chart span {
       display: block;
       background: var(--soft-red);
       animation: draw 1s ease-in-out;
       border-radius: 0.25rem;
+      position: relative;
     }
-    .chart span:before {
+    .bg-cyan {
+      background: var(--cyan) !important;
+    }
+    .chart span:hover, .bg-cyan:hover {
+      background-image: linear-gradient(to right, hsla(255, 100%, 100%, 0.25), hsla(255, 100%, 100%, 0.25)) !important;
+      cursor: pointer;
+    }
+    .chart span:hover::before {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      display: block;
+      margin: 0;
+      content: attr(amount);
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 0.25rem;
+      padding: 0.2rem;
+      padding-right: 0.3rem;
+      transform: translate(-10%, -110%);
+      font-size: 0.65rem;
+      white-space: nowrap;
+      width: 100%;
+    }
+    .chart span:after {
       position: absolute;
       left: 0;
       right: 0;
@@ -132,12 +159,21 @@
       margin: 0;
       text-align: center;
       content: attr(title);
+      color: var(--medium-brown);
       font-size: 0.6rem;
       margin-top: 0.25rem;
     }
     @keyframes draw {
       0% {
         height: 0;
+      }
+    }
+    @media only screen and (max-width: 500px) {
+      html {
+        font-size: 14px;
+      }
+      .expenses__chart {
+        width: 90%;
       }
     }
   </style>
@@ -153,14 +189,7 @@
     </div>    
     <div class="expense__card">
       <h1 class="title">Spending - Last 7 days</h1>
-      <ul class="chart">
-        <li><span style="height:15%" title="mon"></span></li>
-        <li><span style="height:52%" title="tue"></span></li>
-        <li><span style="height:53%" title="wed"></span></li>
-        <li><span style="height:52%" title="thu"></span></li>
-        <li><span style="height:45%" title="fri"></span></li>
-        <li><span style="height:75%" title="sat"></span></li>
-        <li><span style="height:85%" title="sun"></span></li>
+      <ul class="chart" id="expenseChart">
       </ul>
       <div class="expense__analytics">
         <div class="total">
@@ -180,7 +209,29 @@
   </footer>
   <script type="module">
     import data from './data.json' assert { type: "json" };
-    console.log(data);
+    const calcPerc = (val) => (val / maxAmount) * 100;
+    var maxAmount = Math.ceil(Math.max(...data.map(o => o.amount)) / 10) * 10; 
+    const chart = document.getElementById('expenseChart');
+    const day = new Date().getDay();
+    const week = {
+      'sun': 0,
+      'mon': 1,
+      'tue': 2,
+      'wed': 3,
+      'thu': 4,
+      'fri': 5,
+      'sat': 6,
+    }
+    data.forEach(el => {
+      chart.insertAdjacentHTML('beforeend', 
+        `<li>
+          <span class="${week[el.day] == day ? 'bg-cyan' : ''} tooltip" 
+                style="height:${calcPerc(el.amount)}%" 
+                title="${el.day}"
+                amount="$${el.amount}">
+          </span>
+        </li>`);
+    });
   </script>
 </body>
 </html>
