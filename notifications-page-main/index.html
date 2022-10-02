@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:500,600,800">
   
   <title>Frontend Mentor | Notifications page</title>
@@ -68,10 +68,12 @@
     .header .unread__toggle {
       font-size: 1.4em;
       color: var(--grayish-blue);
-      cursor: pointer;
     }
-    .header .unread__toggle:hover {
+    .header .unread__toggle:hover, 
+    .user__notification .user__profile:hover, 
+    .user__notification .user__action__on:hover {
       color: var(--blue);
+      cursor: pointer;
     }
     .notifications__container {
       margin: 1rem 0;
@@ -104,7 +106,7 @@
       vertical-align: middle;
     }
     .user__notification p > span {
-      margin-right: 4px;
+      margin-right: 2px;
     }
     .user__notification .user__profile {
       font-weight: 800;
@@ -112,9 +114,24 @@
     .user__notification .user__action {
       color: var(--grayish-blue);
     }
-    .user__notification .user__notification__on {
-      color: var(--blue);
+    .user__notification .user__action__on {
       font-weight: 800;
+    }
+    .user__notification .user__message {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      border:  1px solid var(--light-grayish-blue-1);
+    }
+    .user__notification .user__message:hover {
+      background-color: var(--light-grayish-blue-1);
+      cursor: pointer;
+    }
+    .text-dark-grayish-blue {
+      color: var(--dark-grayish-blue);
+    }
+    .text-blue {
+      color: var(--blue) !important;
     }
     .unread {
       background-color: var(--light-grayish-blue-1);
@@ -147,57 +164,154 @@
 <body>
   <main class="notifications">
     <div class="header">
-      <h1>Notifications<span class="notifications__count">3</span></h1>
-      <p class="unread__toggle">Mark all as read</p>
+      <h1>Notifications<span class="notifications__count d-none" id="notificationsCount"></span></h1>
+      <p class="unread__toggle" onclick="markAllAsRead()">Mark all as read</p>
     </div>
     <div class="notifications__container">
-      <ul class="notification__list">
-        <li class="notification__item unread">
-          <img src="./assets/images/avatar-mark-webber.webp" class="user__avatar">
-          <div class="user__notification">
-            <p>
-              <span class="user__profile">Mark Webber</span>
-              <span class="user__action">reacted to your recent post</span>
-              <span class="user__notification__on">My first tournament today!</span>
-              <span class="unread__dot d-block"><i class="fa-solid fa-circle"></i></span>
-            </p>
-            <p class="am__time__ago">1m ago</p>
-            <p class="user__message d-none">
-              Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.
-            </p>            
-          </div>
-        </li>
+      <ul class="notification__list" id="notificationsList">
       </ul>
     </div>
   </main>
-
-<!--   Mark Webber reacted to your recent post My first tournament today!
-  1m ago
-
-  Angela Gray followed you
-  5m ago
-
-  Jacob Thompson has joined your group Chess Club
-  1 day ago
-
-  Rizky Hasanuddin sent you a private message
-  5 days ago
-  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-  I'm already having lots of fun and improving my game.
-
-  Kimberly Smith commented on your picture
-  1 week ago
-
-  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
-  2 weeks ago
-
-  Anna Kim left the group Chess Club
-  2 weeks ago -->
-  
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.
   </footer>
+  <script type="text/javascript">
+    const NotificationType = {
+      Reaction: 0,
+      Follow: 1,
+      Group: 3,
+      Message: 4,
+      Comment: 5
+    }
+    const isRead = true;
+    function getData() {
+      var data = [
+        {
+          userProfile: 'Mark Webber',
+          userAction: 'reacted to your recent post',
+          userActionOn: 'My first tournament today!',
+          userAvatar: 'mark-webber',
+          amTimeAgo: '1m ago',
+          notificationType: NotificationType.Reaction,
+          status: !isRead
+        },
+        {
+          userProfile: 'Angela Gray',
+          userAction: 'reacted to your recent post',
+          userAction: 'followed you',
+          userAvatar: 'angela-gray',
+          amTimeAgo: '5m ago',
+          notificationType: NotificationType.Follow,
+          status: !isRead
+        },
+        {
+          userProfile: 'Jacob Thompson',
+          userAction: 'has joined your group',
+          userActionOn: 'Chess Club',
+          userAvatar: 'jacob-thompson',
+          amTimeAgo: '1 day ago',
+          notificationType: NotificationType.Group,
+          status: !isRead
+        },
+        {
+          userProfile: 'Rizky Hasanuddin',
+          userAction: 'sent you a private message',
+          userMessage: "Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.",
+          userAvatar: 'mark-webber',
+          amTimeAgo: '5 days ago',
+          notificationType: NotificationType.Message,
+          status: isRead
+        },
+        {
+          userProfile: 'Kimberly Smith',
+          userAction: 'commented on your picture',
+          userAvatar: 'kimberly-smith',
+          amTimeAgo: '1week ago',
+          notificationType: NotificationType.Comment,
+          status: isRead
+        },
+        {
+          userProfile: ' Nathan Peterson',
+          userAction: 'reacted to your recent post',
+          userActionOn: '5 end-game strategies to increase your win rate',
+          userAvatar: 'nathan-peterson',
+          amTimeAgo: '2 weeks ago',
+          notificationType: NotificationType.Reaction,
+          status: isRead
+        },
+        {
+          userProfile: 'Anna Kim',
+          userAction: 'left the group',
+          userActionOn: 'Chess Club',
+          userAvatar: 'anna-kim',
+          amTimeAgo: '1m ago',
+          notificationType: NotificationType.Group,
+          status: isRead
+        },
+      ]
+
+      return data;
+    }
+    function setNotificationCount(count) {
+      const notificationCount = document.getElementById('notificationsCount');
+      notificationCount.innerHTML = count;
+      if(count > 0) {
+        notificationCount.classList.add('d-block');
+        notificationCount.classList.remove('d-none');
+      } else {
+        notificationCount.classList.add('d-none');
+        notificationCount.classList.remove('d-block');
+      }
+    }
+    function loadData() {
+      var data = getData();
+      var notificationList = document.getElementById('notificationsList');
+      setNotificationCount(data.filter(el => el.status == !isRead).length);
+      data.forEach(el => {
+        let htmlElement = `
+          <li class="notification__item ${el.status ? '' : 'unread'}">
+            <img src="./assets/images/avatar-${el.userAvatar}.webp" class="user__avatar">
+            <div class="user__notification">
+              <p>
+                <span class="user__profile">${el.userProfile}</span>
+                <span class="user__action">${el.userAction}</span>
+                <span class="user__action__on ${el.userActionOn ? 'd-block' : 'd-none'} ${el.notificationType == NotificationType.Group ? ' text-blue' : 'text-dark-grayish-blue'}">
+                ${(el.notificationType != NotificationType.Message) 
+                  ? el.userActionOn
+                  : ''
+                }</span>
+                <span class="unread__dot d-block">
+                  ${el.status ? '' : '<i class="fa-solid fa-circle"></i>'}
+                </span>
+              </p>
+              <p class="am__time__ago">${el.amTimeAgo}</p>
+              <p class="user__message text-dark-grayish-blue ${(el.notificationType == NotificationType.Message) ? 'd-block' : 'd-none'}">
+                ${
+                  (el.notificationType == NotificationType.Message)
+                  ? "Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game."
+                  : ''
+                }
+              </p>            
+            </div>
+          </li>
+        `
+      notificationList.insertAdjacentHTML('beforeend', htmlElement);
+      })
+    }
+    loadData();
+
+    function markAllAsRead() {
+      setNotificationCount(0);
+      document.querySelectorAll('.notification__item').forEach(el => {
+        el.classList.remove('unread');
+      });
+      document.querySelectorAll('.unread__dot').forEach(el => {
+        el.classList.remove('d-block');
+        el.classList.add('d-none');
+      });
+    }
+  </script>
   <script src="https://kit.fontawesome.com/862bd05429.js" crossorigin="anonymous"></script>
 </body>
 </html>
