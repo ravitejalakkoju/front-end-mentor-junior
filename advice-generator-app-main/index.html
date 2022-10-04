@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:800">
+  
+  <title>Frontend Mentor | Advice generator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; margin-top: 2rem; color: var(--light-cyan);}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      /*### Primary*/
+      --light-cyan: hsl(193, 38%, 86%);
+      --neon-green: hsl(150, 100%, 66%);
+      /*### Neutral*/
+      --grayish-blue: hsl(217, 19%, 38%);
+      --dark-grayish-blue: hsl(217, 19%, 24%);
+      --dark-blue: hsl(218, 23%, 16%);
+    }
+    html {
+      font-size: 28px;
+      font-family: 'Manrope';
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 90vh;
+      background-color: var(--dark-blue);
+    }
+    .advice__card {
+      background-color: var(--dark-grayish-blue);
+      padding: 1rem 1rem 1.75rem 1rem;
+      border-radius: 0.5rem;
+      text-align: center;
+      min-width: 300px;
+      max-width: 450px;
+      width: 50%;
+      position: relative;
+    }
+    .advice__id {
+      color: var(--neon-green);
+      text-transform: uppercase;
+      font-size: 0.4rem;
+      letter-spacing: 0.2rem;
+    }
+    .advice {
+      font-size: 1rem;
+      color: var(--light-cyan);
+      quotes: '\201c' '\201d'; 
+    }
+    .advice:before { 
+      content: open-quote; 
+    }
+    .advice:after  { 
+      content: close-quote; 
+    }
+    .pattern__divider {
+      width: 100%;
+    }
+    .advice__generator {
+      border: none;
+      background-color: var(--neon-green);
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 125%);
+      padding: 0;
+      border-radius: 1rem;
+    }
+    .advice__generator:hover {
+      box-shadow: 0 0 0.75rem var(--neon-green);
+      cursor: pointer;
+    }
+    .icon__dice {
+      height: 0.75rem;
+      padding: 0.5rem;
+      vertical-align: middle;
+      display:block;
+    }
+    @media only screen and (max-width: 700px) {
+      html {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="advice__card">
+    <h1 class="advice__id">Advice #<span id="adviceId"></span></h1><!-- Advice ID goes here -->
+    <p class="advice" id="advice">"It is easy to situp and take notice, what's difficult is getting up and taking action."</p>
+    <picture>
+      <source srcset="./images/pattern-divider-desktop.svg" media="(max-width:695px)">
+      <img src="./images/pattern-divider-desktop.svg" alt="patern-divider" class="pattern__divider">
+    </picture>
+    <button class="advice__generator" onclick="generateAdvice()">
+      <img src="./images/icon-dice.svg" alt="icon-dice" class="icon__dice">
+    </button>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.
+  </footer>
+  <script>
+    function updateAdvice(slip) {
+      document.getElementById('adviceId').innerHTML = slip.id;
+      document.getElementById('advice').innerHTML = slip.advice;
+    }
+    function generateAdvice() {
+      fetch('https://api.adviceslip.com/advice')
+        .then(response => response.json())
+        .then(data => updateAdvice(data.slip))
+        .catch(error => console.error(error));
+    }
+    generateAdvice();
+  </script>
+</body>
+</html>
