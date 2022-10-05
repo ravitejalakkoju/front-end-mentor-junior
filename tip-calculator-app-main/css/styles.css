@@ -47,6 +47,7 @@ input[type=number] {
   border-radius: 1rem;
   background-color: var(--white);
   min-height: 400px;
+  max-width: 800px;
   min-width: 40%;
 }
 .tip__calculator > div {
@@ -60,6 +61,7 @@ input[type=number] {
   margin-right: 2rem;
   box-sizing: border-box;
   padding: 0.5rem 0;
+  width: 50%;
 }
 .calculator__input label {
   font-size: 0.65rem;
@@ -89,7 +91,7 @@ input:focus {
 .tip__options {
   list-style: none;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas:
     '5 10 15'
     '25 50 custom';
@@ -196,11 +198,12 @@ input:focus {
   }
   .calculator__input {
     margin-right: 0;
+    width: 100%;
   }
   .tip__options {
     list-style: none;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
       '5 10'
       '15 25'

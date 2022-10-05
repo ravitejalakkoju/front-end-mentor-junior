@@ -17,40 +17,40 @@
   <header class="header">
     <h1>SPLI<br>TTER</h1>
   </header>
-  <main class="tip__calculator">
+  <form class="tip__calculator" name="bill_input" id="billForm">
     <div class="calculator__input">
       <div class="bill__amount">
         <label>Bill</label>
         <div class="input">
           <img src="./images/icon-dollar.svg" alt="icon-dollar" height="18px">
-          <input type="number" name="bill" value="142.55">
+          <input type="number" name="bill" placeholder="0" id="billAmount" oninput="generateTip()">
         </div>
       </div>
       <div class="select__tip">
         <label>Select Tip %</label>
         <div class="tip__options">
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-1" value="1">
-          <label class="for-checkbox-tip" for="tip-1">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5">
+          <label class="for-checkbox-tip" for="tip-5">
             <span data-hover="5%">5%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-2" value="2">
-          <label class="for-checkbox-tip" for="tip-2">              
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-10" value="10">
+          <label class="for-checkbox-tip" for="tip-10">              
             <span data-hover="10%">10%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-3" value="3">
-          <label class="for-checkbox-tip" for="tip-3">              
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-15" value="15">
+          <label class="for-checkbox-tip" for="tip-15">              
             <span data-hover="15%">15%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-4" value="4">
-          <label class="for-checkbox-tip" for="tip-4">              
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-25" value="25">
+          <label class="for-checkbox-tip" for="tip-25">              
             <span data-hover="25%">25%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5">
-          <label class="for-checkbox-tip" for="tip-5">              
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-50" value="50">
+          <label class="for-checkbox-tip" for="tip-50">              
             <span data-hover="50%">50%</span>
           </label>
           <span for="customTip" class="custom__tip">              
-            <input class="checkbox-tip" type="number" name="customTip" id="customTip" placeholder="Custom">
+            <input class="checkbox-tip" type="number" name="customTip" id="customTip" placeholder="Custom" oninput="updateTip()">
           </span>
         </div>
       </div>
@@ -58,7 +58,7 @@
         <label>Number of People</label>
         <div class="input">
           <img src="./images/icon-person.svg" alt="icon-person" height="18px">
-          <input type="number" name="peopleCount" value="5">
+          <input type="number" name="peopleCount" placeholder="0" oninput="generateTip()">
         </div>
       </div>
     </div>
@@ -66,39 +66,32 @@
       <div class="result">
         <div>
           <p class="label">Tip Amount <span>/ person</span></p>
-          <p class="amount" id="tipAmount">$4.27</p>
+          <p class="amount">$<span id="tipAmount">0.00</span></p>
         </div>
         <div>
           <p class="label">Total <span>/ person</span></p>
-          <p class="amount" id="totalAmount">$32.79</p>
+          <p class="amount">$<span id="totalAmount">0.00</span></p>
         </div>
       </div>
       <button type="reset" class="btn__reset">RESET</button>
     </div>
-  </main>
-<!--   Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset -->
-  
-  <div class="attribution">
+  </form>
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </footer>
+  <script>
+    function setDefault() {
+      document.getElementById('tipAmount').innerHTML = "0.00";
+      document.getElementById('totalAmount').innerHTML = "0.00";
+    }
+    function generateTip() {
+      const form = document.getElementById('billForm');
+      const bill = form.elements['bill'].value;
+      const tip = form.elements['tip'].value;
+      const peopleCount = form.elements['peopleCount'].value;
+      console.log(bill, tip, peopleCount);
+    }
+  </script>
 </body>
 </html>
