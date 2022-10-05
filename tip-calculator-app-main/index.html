@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Mono:700">
+  
+  <title>Frontend Mentor | Tip calculator app</title>
+  <link rel="stylesheet" href="./css/checkbox.css">
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+</head>
+<body>
+  <header class="header">
+    <h1>SPLI<br>TTER</h1>
+  </header>
+  <main class="tip__calculator">
+    <div class="calculator__input">
+      <div class="bill__amount">
+        <label>Bill</label>
+        <div class="input">
+          <img src="./images/icon-dollar.svg" alt="icon-dollar" height="18px">
+          <input type="number" name="bill" value="142.55">
+        </div>
+      </div>
+      <div class="select__tip">
+        <label>Select Tip %</label>
+        <div class="tip__options">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-1" value="1">
+          <label class="for-checkbox-tip" for="tip-1">
+            <span data-hover="1">5%</span>
+          </label>
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-2" value="2">
+          <label class="for-checkbox-tip" for="tip-2">              
+            <span data-hover="2">10%</span>
+          </label>
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-3" value="3">
+          <label class="for-checkbox-tip" for="tip-3">              
+            <span data-hover="3">15%</span>
+          </label>
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-4" value="4">
+          <label class="for-checkbox-tip" for="tip-4">              
+            <span data-hover="4">25%</span>
+          </label>
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5">
+          <label class="for-checkbox-tip" for="tip-5">              
+            <span data-hover="5">50%</span>
+          </label>
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5">
+          <label class="for-checkbox-tip" for="tip-5">              
+            <span data-hover="5">Cu</span>
+          </label>
+        </div>
+      </div>
+      <div>
+        <label>Number of People</label>
+        <div class="input">
+          <img src="./images/icon-person.svg" alt="icon-person" height="18px">
+          <input type="number" name="peopleCount" value="5">
+        </div>
+      </div>
+    </div>
+    <div class="calculator__result">
+      <div class="result">
+        <div>
+          <p class="label">Tip Amount <span>/ person</span></p>
+          <p class="amount" id="tipAmount">$4.27</p>
+        </div>
+        <div>
+          <p class="label">Total <span>/ person</span></p>
+          <p class="amount" id="totalAmount">$32.79</p>
+        </div>
+      </div>
+      <button type="reset" class="btn__reset">RESET</button>
+    </div>
+  </main>
+<!--   Bill
+
+  Select Tip %
+  5%
+  10%
+  15%
+  25%
+  50%
+  Custom
+
+  Number of People
+
+  Tip Amount
+  / person
+
+  Total
+  / person
+
+  Reset -->
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+</body>
+</html>

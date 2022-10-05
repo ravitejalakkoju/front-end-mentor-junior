@@ -1,0 +1,52 @@
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked){
+	position: absolute;
+	left: -9999px;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.checkbox-rating:checked + label,
+.checkbox-rating:not(:checked) + label{
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+  	height: 15px;
+  	width: 15px;
+  	padding: 12px; 
+	text-align: center;
+	cursor: pointer;
+	-webkit-transition: all 300ms linear;
+	background: var(--orange);
+	transition: all 300ms linear; 
+}
+
+.checkbox-rating:not(:checked) + label{
+	background-color: var(--light-dark-blue);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.checkbox-rating:checked + label span,
+.checkbox-rating:not(:checked) + label span{
+	position: relative;
+	display: block;
+}
+.checkbox-rating:checked + label span::before,
+.checkbox-rating:not(:checked) + label span::before{
+	position: absolute;
+	content: attr(data-hover);
+	top: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+    color: var(--white);
+	transition: max-height 0.3s;
+}
+.checkbox-rating:not(:checked) + label span::before{
+	max-height: 0;
+}
+.checkbox-rating:checked + label span::before{
+	max-height: 100%;
+}
