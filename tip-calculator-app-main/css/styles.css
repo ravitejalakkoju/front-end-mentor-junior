@@ -89,10 +89,13 @@ input:focus {
 .tip__options {
   list-style: none;
   display: grid;
+  grid-template-columns: 33% 33% 33%;
   grid-template-areas:
     '5 10 15'
     '25 50 custom';
   gap: 0.5rem;
+}
+.tip__options label, .tip__options .custom__tip {
 }
 .tip__options label {
   text-align: center;
@@ -115,6 +118,20 @@ input:focus {
   cursor: pointer;
   color: var(--very-dark-cyan);
   background: var(--strong-cyan);
+}
+.tip__options .custom__tip {
+  text-align: center;
+  align-self: center;
+  background: var(--very-light-grayish-cyan);
+  font-size: 1rem;
+  border-radius: 0.15rem;
+  padding: 0.1rem;
+}
+.tip__options input {
+  border:  none;
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
 }
 .calculator__result {
   background-color: var(--very-dark-cyan);
@@ -164,6 +181,7 @@ input:focus {
 @media only screen and (max-width: 600px) {
   html {
     font-size: 20px;
+    max-width: 100vw;
   }
   body {
     padding: 0;
@@ -182,6 +200,7 @@ input:focus {
   .tip__options {
     list-style: none;
     display: grid;
+    grid-template-columns: 50% 50%;
     grid-template-areas:
       '5 10'
       '15 25'
@@ -194,5 +213,6 @@ input:focus {
   .calculator__result {
     width: 100%;
     margin-top: 1rem;
+    min-height: unset;
   }
 }
