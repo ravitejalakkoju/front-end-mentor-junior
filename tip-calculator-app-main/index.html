@@ -22,43 +22,46 @@
       <div class="bill__amount">
         <label>Bill</label>
         <div class="input">
-          <img src="./images/icon-dollar.svg" alt="icon-dollar" height="18px">
-          <input type="number" name="bill" placeholder="0" id="billAmount" oninput="generateTip()">
+          <i class="fa-solid fa-indian-rupee-sign"></i>
+          <input type="number" name="bill" placeholder="0" id="billAmount" oninput="generateTip(event)">
         </div>
       </div>
       <div class="select__tip">
         <label>Select Tip %</label>
         <div class="tip__options">
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-5" value="5" onclick="generateTip(event)">
           <label class="for-checkbox-tip" for="tip-5">
             <span data-hover="5%">5%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-10" value="10">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-10" value="10" onclick="generateTip(event)">
           <label class="for-checkbox-tip" for="tip-10">              
             <span data-hover="10%">10%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-15" value="15">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-15" value="15" onclick="generateTip(event)">
           <label class="for-checkbox-tip" for="tip-15">              
             <span data-hover="15%">15%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-25" value="25">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-25" value="25" onclick="generateTip(event)">
           <label class="for-checkbox-tip" for="tip-25">              
             <span data-hover="25%">25%</span>
           </label>
-          <input class="checkbox-tip" type="radio" name="tip" id="tip-50" value="50">
+          <input class="checkbox-tip" type="radio" name="tip" id="tip-50" value="50" onclick="generateTip(event)">
           <label class="for-checkbox-tip" for="tip-50">              
             <span data-hover="50%">50%</span>
           </label>
           <span for="customTip" class="custom__tip">              
-            <input class="checkbox-tip" type="number" name="customTip" id="customTip" placeholder="Custom" oninput="updateTip()">
+            <input class="checkbox-tip" type="number" name="customTip" id="customTip" placeholder="Custom" oninput="generateTip(event)">
           </span>
         </div>
       </div>
       <div>
-        <label>Number of People</label>
+        <div class="people__count__label">
+          <label>Number of People</label>
+          <span id="validationMessage"></span>
+        </div>
         <div class="input">
           <img src="./images/icon-person.svg" alt="icon-person" height="18px">
-          <input type="number" name="peopleCount" placeholder="0" oninput="generateTip()">
+          <input type="number" name="peopleCount" id="peopleCount" placeholder="0" oninput="generateTip(event)">
         </div>
       </div>
     </div>
@@ -66,11 +69,11 @@
       <div class="result">
         <div>
           <p class="label">Tip Amount <span>/ person</span></p>
-          <p class="amount">$<span id="tipAmount">0.00</span></p>
+          <p class="amount"><i class="fa-solid fa-indian-rupee-sign"></i><span id="tipAmount">0.00</span></p>
         </div>
         <div>
           <p class="label">Total <span>/ person</span></p>
-          <p class="amount">$<span id="totalAmount">0.00</span></p>
+          <p class="amount"><i class="fa-solid fa-indian-rupee-sign"></i><span id="totalAmount">0.00</span></p>
         </div>
       </div>
       <button type="reset" class="btn__reset">RESET</button>
@@ -81,17 +84,94 @@
     Coded by <a href="#">Your Name Here</a>.
   </footer>
   <script>
+    function validateBillAmount(event) {
+      validateAmount(event, false);
+    }
+    function validateCustomTip(event) {
+      validateAmount(event);
+    }
+    function validateNumber(event) {
+      const pattern = /[0-9]+$/;
+      const number = event.target.value;
+      if(!pattern.test(number)) {
+        event.target.value = '';
+      }
+    }
+    function validateAmount(event, isMax100 = true) {
+      const pattern = /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/;
+      const decimalPattern = /^\d+\.\d{0,2}$/
+      const number = event.target.value;
+
+      if(!pattern.test(number) && event.data == '-') {
+        event.target.value = number;
+      }
+
+      if(isMax100 && number > 100) {
+        event.target.value = number / 10;
+      }
+
+      if(number % 1 > 0 && !decimalPattern.test(number)) {
+        event.target.value = parseFloat(number).toFixed(2);
+      }
+    }
     function setDefault() {
       document.getElementById('tipAmount').innerHTML = "0.00";
       document.getElementById('totalAmount').innerHTML = "0.00";
     }
-    function generateTip() {
+    function generateTip(event) {
+      if(event.target.id == 'peopleCount' && event.target.value == 0) {
+        document.getElementById('peopleCount').parentNode.classList.add('invalid');
+        document.getElementById('validationMessage').innerHTML = "Can't be zero";
+      }
+      else {
+        document.getElementById('peopleCount').parentNode.classList.remove('invalid');
+        document.getElementById('validationMessage').innerHTML = "";
+      }
+
+      if(event.target.id == 'billAmount') {
+        validateBillAmount(event);
+      }
+
+      if(event.target.id == 'customTip') {
+        const radioBtn = document.querySelector('input[type=radio][name=tip]:checked');
+        if(radioBtn) {
+          radioBtn.checked = false;
+        }
+        validateCustomTip(event);
+      }
+
+      if(event.target.name == 'tip') {
+        document.getElementById('customTip').value = '';
+      }
+
+      if(event.target.id == 'peopleCount') {
+        validateNumber(event);
+      }
+
       const form = document.getElementById('billForm');
-      const bill = form.elements['bill'].value;
-      const tip = form.elements['tip'].value;
+      const bill = form.elements['bill'].value || 0;
+      const tip = form.elements['tip'].value || form.elements['customTip'].value || 0;
       const peopleCount = form.elements['peopleCount'].value;
-      console.log(bill, tip, peopleCount);
+      
+      if(bill && tip && peopleCount) {
+        var tipAmount, total; 
+
+        tipAmount = bill * (tip / 100);
+        total = parseFloat(bill) + tipAmount;
+
+        console.log(tipAmount, total)
+
+        document.getElementById('tipAmount').innerHTML = parseFloat(tipAmount / peopleCount).toFixed(2);
+        document.getElementById('totalAmount').innerHTML = parseFloat(total / peopleCount).toFixed(2);
+
+        if (total > 1000000 || tipAmount > 1000000) {
+          document.getElementById('tipAmount').parentNode.parentNode.style.flexDirection = 'column';
+          document.getElementById('totalAmount').parentNode.parentNode.style.flexDirection = 'column';
+          document.querySelectorAll('.tip__calculator')[0].style.maxWidth = '100%';
+        }
+      }
     }
   </script>
+  <script src="https://kit.fontawesome.com/862bd05429.js" crossorigin="anonymous"></script> 
 </body>
 </html>

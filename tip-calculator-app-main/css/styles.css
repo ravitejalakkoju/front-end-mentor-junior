@@ -63,10 +63,20 @@ input[type=number] {
   padding: 0.5rem 0;
   width: 50%;
 }
-.calculator__input label {
+.calculator__input label, #validationMessage {
   font-size: 0.65rem;
-  color: var(--dark-grayish-cyan);
 } 
+.calculator__input label {
+  color: var(--dark-grayish-cyan);
+}
+#validationMessage {
+  color: orangered;
+}
+.people__count__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .calculator__input .input {
   width: 100%;
   background-color: var(--very-light-grayish-cyan);
@@ -75,7 +85,7 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.25rem 0.6rem;
+  padding: 0.2rem 0.6rem;
   box-sizing: border-box;
 }
 .calculator__input .input > input{
@@ -87,6 +97,10 @@ input[type=number] {
 } 
 input:focus {
   outline: none;
+}
+.input > i.fa-indian-rupee-sign {
+  font-size: 18px; 
+  color: var(--grayish-cyan);
 }
 .tip__options {
   list-style: none;
@@ -135,6 +149,9 @@ input:focus {
   width: 100%;
   text-align: center;
 }
+.invalid {
+  border: 1.5px solid orangered;
+}
 .calculator__result {
   background-color: var(--very-dark-cyan);
   border-radius: 0.5rem;
@@ -162,12 +179,16 @@ input:focus {
   color: var(--dark-grayish-cyan);
 }
 .calculator__result > .result .amount {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
   color: var(--strong-cyan);
 }
+.amount > .fa-indian-rupee-sign {
+  font-size: 1rem; 
+  margin-right: 0.25rem;
+}
 .calculator__result > .btn__reset {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 0.4rem;
   border: 0;
