@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500">
+  
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; color: white; margin-top: 1rem;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      /*### Primary*/
+
+      --blue: hsl(246, 80%, 60%);
+
+      --work: hsl(15, 100%, 70%);
+      --play: hsl(195, 74%, 62%);
+      --study: hsl(348, 100%, 68%);
+      --exercise: hsl(145, 58%, 55%);
+      --social: hsl(264, 64%, 52%);
+      --self-care: hsl(43, 84%, 65%);
+
+      /*### Neutral*/
+
+      --very-dark-blue: hsl(226, 43%, 10%);
+      --dark-blue: hsl(235, 46%, 20%);
+      --desaturated-blue: hsl(235, 45%, 61%);
+      --pale-blue: hsl(236, 100%, 87%);
+    }
+    html {
+      font-size: 18px;
+      font-family: 'Rubik';
+      background-color: var(--very-dark-blue);
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 90vh;
+    }
+    main {
+      display: grid;
+      grid-template-areas: 
+        'profile time__tracker__list'
+        'profile time__tracker__list'
+        'a time__tracker__list';
+      grid-gap: 1rem;
+      height: 70vh;
+    }
+    .profile {
+      grid-area: profile;
+      width: 300px;
+      background-color: var(--dark-blue);
+      border-radius: 1rem;
+      height: inherit;
+      margin: 0 1rem;
+    }
+    .profile > .picture {
+      background-color: var(--blue);
+      padding: 2rem;
+      border-radius: inherit;
+      height: 60%;
+    }
+    .profile > .picture > img {
+      height: 5rem;
+      border: 3px solid white;
+      border-radius: 4rem;
+    }
+    .profile > .picture > div > p {
+      color: var(--pale-blue);
+      margin-top: 3rem  ;
+    }
+    .profile > .picture > div > h1 {
+      margin: 0;
+      color: white;
+      font-weight: 300;
+      font-size: 3rem;
+    }
+    .profile > .time {
+      list-style: none;
+      padding: 2rem;
+      margin: 0;
+      color: var(--desaturated-blue);
+    }
+    .profile > .time > li {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+    .time__tracker__list {
+      grid-area: time__tracker__list;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-areas: 'work play study' 'exercise social selfcare';
+      grid-gap: 2rem;
+      height: inherit;
+    }
+    .work {
+      grid-area: work;
+    }
+    .play {
+      grid-area: play;
+    }
+    .study {
+      grid-area: study;
+    }
+    .exercise {
+      grid-area: exercise;
+    }
+    .social {
+      grid-area: social;
+    }
+    .selfcare {
+      grid-area: selfcare;
+    }
+    .time__tracker__item {
+      background-color: var(--dark-blue);
+      border-radius: 1rem;
+      position: relative;
+      width: 300px;
+    }
+    .time__tracker__item > img {
+      float: right;
+      margin-right: 1rem;
+      height: 5rem;
+    }
+    .details {
+      border-radius: inherit;
+      position: absolute;
+      bottom: 0;
+      height: 80%;
+      width: 100%;
+      background-color: var(--dark-blue);
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .details:hover {
+      background: linear-gradient(to right, hsla(0, 0%, 100%, 0.2), hsla(0, 0%, 100%, 0.2)), var(--dark-blue);
+      cursor: pointer;
+    }
+    .details > .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.25rem;
+      color: white;
+    }
+    .details > .title > img {
+      width: 1rem;
+    }
+    .details > .time {
+      margin-top: 2rem;
+    }
+    .details > .time > .curr__time {
+      font-size: 4rem;
+      color: white;
+      font-weight: 300;
+      margin: 0;
+    }
+    .details > .time > .last__time {
+      font-size: 1rem;
+      font-weight: 300;
+      margin: 0;
+      color: var(--pale-blue);
+    }
+    .active {
+      color: white;
+    }
+    @media only screen and (max-width: 600px) {
+      main {
+        margin: 3rem 0;
+        grid-template-areas: 
+          'profile'
+          'time__tracker__list';
+        grid-gap: 1rem;
+        width: 90%;
+        height: fit-content;
+      } 
+      .profile {
+        width: 100%;
+        margin: 0;
+      }
+      .profile > .picture {
+        border-radius: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile > .picture > img {
+        height: 4rem;
+        border-radius: 4rem;
+      }
+      .profile > .picture > div {
+        margin-left: 1rem;
+      }
+      .profile > .picture > div > p {
+        margin: 0.25rem 0;
+      }
+      .profile > .picture > div > h1 {
+        font-size: 1.25rem;
+      }
+      .profile > .time {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.5rem 2rem;
+        margin: 0;
+        color: var(--desaturated-blue);
+      }
+      .profile > .time > li {
+        margin-bottom: 0;
+        font-size: 1.25rem;
+        cursor: pointer;
+      }
+      .time__tracker__list {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: 'work' 'play' 'study' 'exercise' 'social' 'selfcare';
+        height: inherit;
+      }
+      .time__tracker__item {
+        width: 100%;
+        height: 175px;
+      } 
+      .details > .title {
+        font-size: 1rem;
+      }
+      .details > .time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5rem;
+      }
+      .details > .time > .curr__time {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="profile">
+      <div class="picture">
+        <img src="./images/image-jeremy.png">
+        <div>
+          <p>Report for</p>
+          <h1>Jeremy Robson</h1>
+        </div>
+      </div>
+      <ul class="time">
+        <li id="daily">Daily</li>
+        <li id="weekly">Weekly</li>
+        <li id="monthly">Monthly</li>
+      </ul>
+    </div>
+    <div class="time__tracker__list" id="timeTrackerList"></div>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.  
+  </footer>
+  <script type="module">
+    // import data from './data.json' assert { type: "json" };
+    const timeTrackerList = document.getElementById('timeTrackerList');
+    const data = [
+  {
+    "title": "Work",
+    "timeframes": {
+      "daily": {
+        "current": 5,
+        "previous": 7
+      },
+      "weekly": {
+        "current": 32,
+        "previous": 36
+      },
+      "monthly": {
+        "current": 103,
+        "previous": 128
+      }
+    }
+  },
+  {
+    "title": "Play",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 2
+      },
+      "weekly": {
+        "current": 10,
+        "previous": 8
+      },
+      "monthly": {
+        "current": 23,
+        "previous": 29
+      }
+    }
+  },
+  {
+    "title": "Study",
+    "timeframes": {
+      "daily": {
+        "current": 0,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 4,
+        "previous": 7
+      },
+      "monthly": {
+        "current": 13,
+        "previous": 19
+      }
+    }
+  },
+  {
+    "title": "Exercise",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 4,
+        "previous": 5
+      },
+      "monthly": {
+        "current": 11,
+        "previous": 18
+      }
+    }
+  },
+  {
+    "title": "Social",
+    "timeframes": {
+      "daily": {
+        "current": 1,
+        "previous": 3
+      },
+      "weekly": {
+        "current": 5,
+        "previous": 10
+      },
+      "monthly": {
+        "current": 21,
+        "previous": 23
+      }
+    }
+  },
+  {
+    "title": "Self Care",
+    "timeframes": {
+      "daily": {
+        "current": 0,
+        "previous": 1
+      },
+      "weekly": {
+        "current": 2,
+        "previous": 2
+      },
+      "monthly": {
+        "current": 7,
+        "previous": 11
+      }
+    }
+  }
+];
+    document.getElementById('daily').addEventListener('click', () => {
+      toggleTime('daily');
+      buildTracker('daily');  
+    });
+    document.getElementById('weekly').addEventListener('click', () => {
+      toggleTime('weekly');
+      buildTracker('weekly');  
+    });
+    document.getElementById('monthly').addEventListener('click', () => {
+      toggleTime('monthly');
+      buildTracker('monthly');  
+    });
+    function toggleTime(toggleTimeFor) {
+      Object.keys(timeFor).forEach(type => {
+        const typeClass = document.getElementById(toggleTimeFor).classList;
+        if(type == toggleTimeFor) {
+          document.getElementById(toggleTimeFor).classList.add('active');
+        }
+        else {
+          document.getElementById(type).classList.remove('active');
+        }
+      });
+    }
+    const timeFor = {
+      daily: 'Day',
+      weekly: 'Week',
+      monthly: 'Month',
+    }
+    toggleTime('weekly');
+    buildTracker('weekly');
+    function buildTracker(trackTimeFor) {
+      timeTrackerList.innerHTML = '';
+      data.forEach(el => {
+        timeTrackerList.insertAdjacentHTML('beforeend', 
+          `<div class="time__tracker__item ${el.title.toLowerCase()}"
+              style="background: linear-gradient(to bottom, var(--${el.title.toLowerCase().replace(' ','-')}), var(--${el.title.toLowerCase().replace(' ','-')}), var(--dark-blue));">
+              <img src="./images/icon-${el.title.toLowerCase().replace(' ','-')}.svg" alt="icon-${el.title.toLowerCase()}">
+              <div class="details">
+                <div class="title">
+                  <span>${el.title}
+                  </span>
+                  <img src="./images/icon-ellipsis.svg" alt="icon-ellipsis">
+                </div>
+                <div class="time">
+                  <p class="curr__time">${el.timeframes[trackTimeFor].current}hrs</p> 
+                <p class="last__time">Last ${timeFor[trackTimeFor]} - ${el.timeframes[trackTimeFor].previous}hrs</p>
+                </div> 
+              </div>
+          </div>`);
+      });
+    }
+  </script>
+</body>
+</html>
