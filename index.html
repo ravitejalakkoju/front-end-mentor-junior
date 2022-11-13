@@ -30,9 +30,9 @@
         grid-auto-flow: row;
         grid-template-areas:
           "a b c"
-          "a d e";
-/*          "f f f"
-          "g h i"
+          "a d e"
+          "f f f";
+/*           "g h i"
           "g j j"*/;
         overflow-y: scroll;
         border-radius:3px;
@@ -136,9 +136,12 @@
       .e:hover{
         background-image: linear-gradient(to top, hsla(235, 45%, 61%, 0.9), hsla(211, 100%, 95%, 0.9)), url('./time-tracking-dashboard-main/design/desktop-design.jpg');
       }
-/*      .f { 
+      .f { 
         grid-area: f; 
-        background-color: #74BC50;
+        background-image: url('./interactive-comments-section-main/design/desktop-design.jpg');
+      }
+      .f:hover{
+        background-image: linear-gradient(to top, hsla(358, 79%, 66%, 0.9), hsla(211, 100%, 95%, 0.9)), url('./interactive-comments-section-main/design/desktop-design.jpg');
       }
       .g { 
         grid-area: g; 
@@ -155,7 +158,7 @@
       .j { 
         grid-area: j; 
         background-color: #6C2C09;
-      }*/
+      }
       .heading {
         font-size: 2rem;
         text-transform: uppercase;
@@ -200,8 +203,11 @@
         <a href="./time-tracking-dashboard-main/index.html" class="preview">Preview</a>
         <a href="https://github.com/ravitejalakkoju/front-end-mentor-junior/tree/main/time-tracking-dashboard-main" class="github"><i class="fa-brands fa-github"></i></a>
       </div>
-<!--       <div class="f">🐸</div>
-      <div class="g">🐳</div>
+      <div class="f grid__item">
+        <a href="./interactive-comments-section-main/index.html" class="preview">Preview</a>
+        <a href="https://github.com/ravitejalakkoju/front-end-mentor-junior/tree/main/interactive-comments-section-main" class="github"><i class="fa-brands fa-github"></i></a>
+      </div>
+<!--      <div class="g">🐳</div>
       <div class="h">🍄</div>
       <div class="i">🎂</div>
       <div class="j">🍩</div> -->
