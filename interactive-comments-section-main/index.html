@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!---displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:400,500,700">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  
+  <title>Frontend Mentor | Interactive comments section</title>
+</head>
+<body>
+
+  <!---Pull dynamic content from the data.json file -->
+  <main>
+    <ul class="comments-list">
+      <li class="comments-list__item">
+        <div class="comment__item">
+          <ul class="acknowledgements">
+            <li class="icon icon-plus">
+              <img src="./images/icon-plus.svg" alt="icon-plus">
+            </li>
+            <li class="acknowledgements__count">5</li>
+            <li class="icon icon-minus">
+              <img src="./images/icon-minus.svg" alt="icon-minus">
+            </li>
+          </ul>
+          <div class="comment">
+            <div class="comment__header">
+              <div class="user-details">
+                <img src="./images/avatars/image-amyrobson.png" class="profile-picture">
+                <span class="profile-name">Name</span>
+                <span class="comment__time">am time ago</span>
+              </div>
+              <div class="comment-actions">
+                <button class="action-btn action-btn__reply">
+                  <img src="./images/icon-reply.svg" alt="icon-reply" class="icon-reply">
+                  Reply
+                </button>
+                <button class="action-btn action-btn__delete">
+                  <img src="./images/icon-delete.svg" alt="icon-reply" class="icon-delete">
+                  Delete
+                </button>
+                <button class="action-btn action-btn__edit">
+                  <img src="./images/icon-edit.svg" alt="icon-reply" class="icon-edit">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <p class="comment__message">
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+              Main comment Main comment Main comment Main comment Main comment Main comment 
+            </p>    
+          </div>
+        </div>
+        <ul class="comments-list--inner">
+          <li class="comments-list__item">
+            <div class="comment__item">
+              <ul class="acknowledgements">
+                <li class="icon icon-plus">
+                  <img src="./images/icon-plus.svg" alt="icon-plus">
+                </li>
+                <li class="acknowledgements__count">5</li>
+                <li class="icon icon-minus">
+                  <img src="./images/icon-minus.svg" alt="icon-minus">
+                </li>
+              </ul>
+              <div class="comment">
+                <div class="comment__header">
+                  <div class="user-details">
+                    <img src="./images/avatars/image-amyrobson.png" class="profile-picture">
+                    <span class="profile-name">Name</span>
+                    <span class="comment__time">am time ago</span>
+                  </div>
+                  <div class="comment-actions">
+                    <button class="action-btn action-btn__reply">
+                      <img src="./images/icon-reply.svg" alt="icon-reply" class="icon-reply">
+                      Reply
+                    </button>
+                    <button class="action-btn action-btn__delete">
+                      <img src="./images/icon-delete.svg" alt="icon-reply" class="icon-delete">
+                      Delete
+                    </button>
+                    <button class="action-btn action-btn__edit">
+                      <img src="./images/icon-edit.svg" alt="icon-reply" class="icon-edit">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+                <p class="comment__message">
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                  Main comment Main comment Main comment Main comment Main comment Main comment 
+                </p>    
+              </div>
+            </div>
+          </li>
+          <div class="add-comment">
+      <img src="./images/avatars/image-amyrobson.png" class="profile-picture">
+      <textarea class="add-comment__box" placeholder="Add a comment..."></textarea>
+      <button class="send__btn">Send</button>
+    </div>
+        </ul>
+      </li>
+    </ul>
+    <div class="add-comment">
+      <img src="./images/avatars/image-amyrobson.png" class="profile-picture">
+      <textarea class="add-comment__box" placeholder="Add a comment..."></textarea>
+      <button class="send__btn">Send</button>
+    </div>
+  </main>
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/ravitejalakkoju" target="_blank">L N S S Ravi Teja</a>.
+  </footer>
+  
+  <script type="text/javascript" src="./script.js"></script>
+</body>
+</html>
