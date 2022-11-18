@@ -70,3 +70,7 @@ function getData() {
 }
 
 console.log(getData());
+
+function loadData() {
+	console.log(getData());
+}

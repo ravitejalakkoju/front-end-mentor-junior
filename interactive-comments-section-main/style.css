@@ -59,15 +59,25 @@ main {
   position: relative;
 }
 .acknowledgements {
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 0.5rem;
   background-color: var(--very-light-gray);
   border-radius: 0.5rem;
   font-weight: 700;
   color: var(--moderate-blue);
   list-style: none;
 }
+.icon {
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+.icon:hover {
+  cursor: pointer;
+}
 .acknowledgements__count{
   margin: 0.5rem 0;
+  text-align: center;
 }
 .comment {
   margin-left: 1.5rem;
@@ -198,15 +208,17 @@ main {
 }
 @media only screen and (max-width: 500px) {
   html {
+    font-size: 15px;
   }
   .comments-list--inner {
     padding-left: 1.25rem;
-    margin: 0.75rem 0 0.75rem 1.25rem;
+    margin: 0.75rem 0 0.75rem 0;
     border-left: 2px solid var(--light-gray);
   }
   .comment__item {
     position: relative;
     flex-direction: column-reverse;
+    padding: 1rem;
   }
   .acknowledgements {
     display: flex;
@@ -227,7 +239,7 @@ main {
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 0 1.5rem 2rem 0;
+    margin: 1.75rem 1rem;
   }
   .add-comment{
     flex-direction: column-reverse;
