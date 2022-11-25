@@ -58,7 +58,7 @@ function createRepliesList(commentId, replies) {
 }
 
 function loadData(data) {
-	currentUser = data.currentUser;
+	currentUser = data?.currentUser;
 
 	const commentList = document.getElementById('commentList');
 
