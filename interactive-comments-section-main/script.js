@@ -1,5 +1,3 @@
-import getData from './module.js'
-
 var currentUser;
 var idCounter = 0;
 
@@ -59,8 +57,7 @@ function createRepliesList(commentId, replies) {
 	return list;
 }
 
-function loadData() {
-	const data = getData();
+function loadData(data) {
 	currentUser = data.currentUser;
 
 	const commentList = document.getElementById('commentList');
