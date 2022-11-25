@@ -1,4 +1,4 @@
-import data from './data.json' assert { type: "json" };
+import getData from './module.js'
 
 var currentUser;
 var idCounter = 0;
@@ -60,6 +60,7 @@ function createRepliesList(commentId, replies) {
 }
 
 function loadData() {
+	const data = getData();
 	currentUser = data.currentUser;
 
 	const commentList = document.getElementById('commentList');
