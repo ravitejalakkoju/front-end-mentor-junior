@@ -62,13 +62,11 @@ function loadData(data) {
 
 	const commentList = document.getElementById('commentList');
 
-	data.comments.forEach(item => {
+	data?.comments.forEach(item => {
 		var comment = getListItem(item);
 		idCounter = Math.max(idCounter, item.id);
 		commentList.insertAdjacentHTML('beforeend', getListItem(item));
 	});
-
-	console.log(idCounter)
 }
 
 (loadData());
