@@ -31,4 +31,9 @@ body {
 	background-position: bottom;
 	background-size: 100% 50%;
 	color: $grayish-blue;
+
+    @media (max-width: 850px) {
+		background: url('./../images/bg-mobile.png');
+		background-size: 100%;
+	}
 }

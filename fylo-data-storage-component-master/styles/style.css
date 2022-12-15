@@ -22,6 +22,12 @@ body {
   background-size: 100% 50%;
   color: hsl(229deg, 7%, 55%);
 }
+@media (max-width: 850px) {
+  body {
+    background: url("./../images/bg-mobile.png");
+    background-size: 100%;
+  }
+}
 
 main {
   display: flex;
