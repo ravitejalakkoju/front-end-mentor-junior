@@ -1,0 +1,150 @@
+@import './root';
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 2rem;
+
+    @media (max-width: 850px) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upload-component {
+        background: $dark-blue;
+        padding: 2.5rem;
+        border-radius: 0.5rem 6.5rem 0.5rem 0.5rem;
+        min-width: 17rem;
+
+        .logo {
+            margin-bottom: 2rem;
+            height: 2.75rem;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+
+            li {
+                button {
+                    height: 3rem;
+                    width: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 0;
+                    border-radius: 0.5rem;
+                    background-color: $very-dark-blue;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .storage {
+        background-color: $dark-blue;
+        border-radius: 0.5rem;
+        padding: 2rem 2rem 3rem 2rem;
+        font-size: 1rem;
+        color: $pale-blue;
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 500px;
+        position: relative;
+
+        @media (max-width: 850px) {
+            min-width: 200px;
+            width: 100%;
+        }
+
+        h5 {
+            margin: 0;
+            font-weight: 400;
+
+            span {
+                font-weight: 700;
+            }
+        }
+
+        .progress {
+            background-color: $very-dark-blue;
+            padding: 2px;
+            border-radius: 1rem;
+            margin: 1rem 0 0.25rem 0;
+
+            .actual-progress {
+                height: 1rem;
+                width: 74%;
+                background: $gradient;
+                border-radius: 1rem;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    height: 0.7rem;
+                    width: 0.7rem;
+                    background-color: white;
+                    border-radius: 50%;
+                    position: absolute;
+                    right: 0;
+                    margin: 0.15rem 0.15rem;
+                    display: inline-block;
+                }
+            }
+        }
+
+        .range {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .tooltip {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            color: black;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $grayish-blue;
+            margin-top: -2rem;
+            margin-right: 2rem;
+
+            @media (max-width: 850px) {
+                top: auto;
+                right: auto;
+                left: 30%;
+                bottom: 0;  
+                margin-bottom: -2rem;
+            }
+            span {
+                font-size: 2rem;
+                color: black;
+            }
+        }
+    }
+}
+
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+    margin-top: 1rem;
+    
+    @media (max-width: 850px) {
+        margin-top: 3rem;
+    }
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
