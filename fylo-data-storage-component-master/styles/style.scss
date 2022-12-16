@@ -118,8 +118,19 @@ main {
             font-size: 0.75rem;
             font-weight: 700;
             color: $grayish-blue;
-            margin-top: -2rem;
+            margin-top: -3rem;
             margin-right: 2rem;
+
+            &::after {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                margin-bottom: -1.5rem;
+                border-right: 2rem solid white;
+                border-bottom: 2rem solid transparent;
+            }
 
             @media (max-width: 850px) {
                 top: auto;
@@ -127,7 +138,12 @@ main {
                 left: 30%;
                 bottom: 0;  
                 margin-bottom: -2rem;
+
+                &::after { 
+                    display: none;
+                }
             }
+
             span {
                 font-size: 2rem;
                 color: black;

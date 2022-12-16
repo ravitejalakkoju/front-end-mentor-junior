@@ -142,8 +142,18 @@ main .storage .tooltip {
   font-size: 0.75rem;
   font-weight: 700;
   color: hsl(229deg, 7%, 55%);
-  margin-top: -2rem;
+  margin-top: -3rem;
   margin-right: 2rem;
+}
+main .storage .tooltip::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: -1.5rem;
+  border-right: 2rem solid white;
+  border-bottom: 2rem solid transparent;
 }
 @media (max-width: 850px) {
   main .storage .tooltip {
@@ -152,6 +162,9 @@ main .storage .tooltip {
     left: 30%;
     bottom: 0;
     margin-bottom: -2rem;
+  }
+  main .storage .tooltip::after {
+    display: none;
   }
 }
 main .storage .tooltip span {
