@@ -28,6 +28,8 @@ html {
 
     @media (max-width: 850px) {
 		background: url('./../images/bg-mobile.png');
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 }
 
